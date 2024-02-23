@@ -37,7 +37,7 @@ def lut2niivue(fsname):
       js['G'].append(0);
       js['B'].append(0);
       js['A'].append(255);
-
+      js['I'].append(i);
     js['A'][0] = 0;
     for line in validLines:
       items = line.split()
@@ -50,8 +50,8 @@ def lut2niivue(fsname):
 
     fnm = os.path.splitext(fsname)[0]+'.json'
     print(fnm)
-    with codecs.open(fnm, 'w', 'utf8') as f:
-        f.write(json.dumps(js, sort_keys = False, ensure_ascii=False))
+    with open(fnm, 'w', encoding='utf-8', newline='\r\n') as f:
+        f.write(json.dumps(js, indent=4, sort_keys=False, ensure_ascii=False))
 
 if __name__ == '__main__':
     """Convert FreeSurfer colormaps to NiiVue
